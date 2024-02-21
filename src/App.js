@@ -95,19 +95,21 @@ function HomePage({ onLoginSuccess }) {
 
   const loginContainerStyle = {
     display: 'flex',
-    flexDirection: 'column', // 요소들을 수직으로 쌓기
-    alignItems: 'center', // 수직 방향 중앙 정렬
-    justifyContent: 'center', // 수평 방향 중앙 정렬
-    margin: '30px', // 여백 설정
+    flexDirection: 'column',
+    // alignItems: 'flex-start', // 이 속성은 column 방향에서는 주로 세로 정렬에 영향을 줍니다.
+    justifyContent: 'center',
+    margin: '30px 30px 30px 0px', // 좌우 마진을 제거하거나 조정
+    padding: '0', // 필요에 따라 조정
+    width: '70%', // 컨테이너 너비를 부모에 맞춤
   };
-
+  
   const inputStyle = {
-    margin: '10px',
+    margin: '10px 10px 10px 0', // 상하 마진만 적용, 좌우 마진 조정
     padding: '10px',
     fontSize: '1.5rem',
     borderRadius: '24px',
     border: '1px solid #ddd',
-    width: '50%', // 입력 필드 너비
+    width: '70%', // 입력 필드 너비를 조정하여 부모 컨테이너와 일치시킴
   };
 
   const handleSignupClick = async () => {
@@ -166,8 +168,10 @@ function HomePage({ onLoginSuccess }) {
     <div className="intro-text2">
       오디오북 효과음 생성 위치 추천 및 효과음, 배경음악 생성 서비스
     </div>
-      <div className="homepage-buttons">
-    <div style={loginContainerStyle}>
+
+    <div className="login-and-actions" style={{ display: 'flex', alignItems: 'center'}}>
+          {/* ID 및 Password 입력 필드 컨테이너 */}
+          <div style={{ ...loginContainerStyle, flexDirection: 'column', flex: 1}}>
             <input
               type="text"
               placeholder="ID"
@@ -182,11 +186,16 @@ function HomePage({ onLoginSuccess }) {
               onChange={(e) => setPassword(e.target.value)}
               style={inputStyle}
             />
-          <button className="start-button"onClick={handleLoginClick}> Start</button>
-          <button className="demo-button" onClick={handleSignupClick}> Request a demo</button>
+          </div>
+
+          {/* 버튼 컨테이너 */}
+          <div style={{ marginLeft: '20px', display: 'flex', flexDirection: 'column' }}>
+            <button className="start-button" onClick={handleLoginClick} style={{ marginBottom: '20px' }}>Start</button>
+            <button className="demo-button" onClick={handleSignupClick}>Sign Up</button>
+          </div>
         </div>
-      </div> 
-    </div>
+      </div>
+
       <div className="body-left">
       <img src="home_main.png" alt="main Image" className="main-image" />
     </div>
@@ -200,7 +209,7 @@ function HomePage({ onLoginSuccess }) {
 function UploadPage({ onGoBackClick, onTransformClick, setTransformedResults }) {
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState('');
-
+  
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
     if (selectedFile) {
@@ -249,28 +258,48 @@ function UploadPage({ onGoBackClick, onTransformClick, setTransformedResults }) 
     }
   };
   
+  function Sidebar() {
+    return (
+      <div className="sidebar">
+        <div className="profile-image"></div>
+        <div className="menu-item1"><span className="icon">&#x1F4C8;</span>My Cloud</div>
+        <div className="whitebackground">
+          <div className="menu-item2"><span className="icon">&#x1F4C9;</span>Upload</div>
+        </div>
+        <div className="menu-item3"><span className="icon">&#x1F4CA;</span>Recent files</div>
+        <div className="menu-item4"><span className="icon">&#x1F4CB;</span>Trash bins</div>
+        <div className="menu-item5"><span className="icon">&#x1F4CC;</span>Settings</div>
+        <div className="menu-item6"><span className="icon">&#x1F4CD;</span>Logout</div>
+      </div>
+    );
+  }
+
   return (
+    <div className="container">
+      <Sidebar />
     <div className="upload-page">
-      <div className="card">
-        <h1>Upload files</h1>
-        <div className="innercard">
-          <img src="uploadIcon_big.png" alt="upload_img"/>
-          <h2>Drag & drop your files here</h2>
-          <p>or</p>
-          {file ? (
-            <div className="file-name-display">{fileName}</div>
-          ) : (
-            <button className="upload-button" onClick={() => document.getElementById('file').click()}>Choose files from your computer</button>
-          )}
-          <input type="file" id="file" className="file-input" accept=".wav" onChange={handleFileChange} style={{ display: 'none' }} />
-          <div className="upload-page-buttons">
-            
-            <button className="upload-button" onClick={onGoBackClick}>돌아가기</button>
-            <button className="upload-button" onClick={handleFileUpload} disabled={!file}>변환하기</button>
-          </div>
+    <div className="card">
+      <h1>Upload files</h1>
+      <div className="innercard">
+        <img src="uploadIcon_big.png" alt="upload_img" className="upload-icon"/>
+        <h2 className="upload-title">Drag & drop your files here</h2>
+        <p className="upload-description">or</p>
+        {file ? (
+          <div className="file-name-display">{fileName}</div>
+        ) : (
+          <button className="upload-button" onClick={() => document.getElementById('file').click()}>
+            Choose files from your computer
+          </button>
+        )}
+        <input type="file" id="file" className="file-input" accept=".wav" onChange={handleFileChange} style={{ display: 'none' }} />
+        <div className="upload-page-buttons">
+          <button className="upload-button" onClick={onGoBackClick}>돌아가기</button>
+          <button className="upload-button" onClick={handleFileUpload} disabled={!file}>변환하기</button>
         </div>
       </div>
     </div>
+  </div>
+  </div>
   );
 }
 

@@ -1,3 +1,4 @@
+/* 메인 페이지 App.css 시작 */
 /* App.css 수정본 */
 .App {
   text-align: center;
@@ -96,9 +97,10 @@
 
 .body {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between; /* 양 끝으로 정렬 */
   padding: 32px;
   padding-top: 100px;
+  flex-direction: row; /* 항목을 수평으로 배열 */
 }
 
 .body-left {
@@ -115,11 +117,7 @@
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: 32px;
-  /* flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; */
+  margin-right: 20px; /* 오른쪽으로 조금 더 밀어내기 */
 }
 
 .intro-text {
@@ -134,90 +132,66 @@
 
 .intro-text2 {
   color: #000000;
-  font-size: 20px;
+  font-size: 16px;
   font-family: 'Arial';
   font-weight: 500;
   line-height: 32px;
-  text-align: center;
-  margin-bottom: 32px;
+  text-align: left;
+  margin-bottom: 16px;
 }
+
 .homepage-buttons {
   display: flex;
-  justify-content: space-around;
-  width: 100%;
-  margin-top: 20px; /* 버튼 배치 조정 */
+  flex-direction: column; /* Change to column */
+  align-items: flex-end; /* Align to the right */
+  justify-content: space-between; /* Add this to vertically space the buttons */
+  width: 40%; /* Reduce the width to make room for the start-button and demo-button */
+  margin-top: 0px;
 }
-.start-button {
-  background-color: #3617ce;
-  color: #ffffff;
+
+.start-button, .demo-button {
+  background-color: #3617ce; /* Start 버튼의 배경색, Demo 버튼은 이후에 오버라이드됩니다. */
+  color: #ffffff; /* 공통 텍스트 색상, Demo 버튼은 이후에 오버라이드됩니다. */
   border: none;
-  padding: 12px 24px;
-  font-size: 24px;
+  padding: 12px 24px; /* 패딩을 통일 */
+  font-size: 18px; /* 폰트 크기를 통일 */
   cursor: pointer;
-  margin-right: 16px;
+  margin-bottom: 10px; /* 마진을 통일 (Demo 버튼의 경우 이 값을 오버라이드할 필요가 없음) */
+  margin-right: 30px;
   border-radius: 13px;
   box-sizing: border-box;
-  line-height: 31px;
+  line-height: 21px; /* 라인 높이를 통일 */
   font-family: Work Sans;
   outline: none;
-  top: 554px;
-  left: 105px;
-  width: 205px;
-  height: 67px;
-  padding: 0px 8px;
+  width: 205px; /* 너비를 통일 */
+  height: 67px; /* 높이를 통일 */
+}
+
+.start-button {
+  background-color: #3617ce; /* Start 버튼의 배경색 */
+  color: #ffffff; /* Start 버튼의 텍스트 색상 */
 }
 
 .demo-button {
-  background-color: #ffffff;
-  color: #3617ce;
-  padding: 12px 24px;
-  border-radius: 13px;
-  gap: 8px;
-  cursor: pointer;
+  background-color: #ffffff; /* Demo 버튼의 배경색 */
+  color: #3617ce; /* Demo 버튼의 텍스트 색상 */
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row-reverse;
-  font-size: 18px;
-  font-family: Work Sans;
   font-weight: 500;
-  line-height: 21px;
-  outline: none;
-  border: none;
 }
-/* demo-button 안에 들어가는 화살표 아이콘
-.Icon {
-  font-size: 24px;
-  width: 24px;
-  height: 24px;
-  color: var(--button-color);
-  fill: var(--button-color);
-}
-*/
+
 .main-image {
   max-width: 100%;
   height: auto;
 }
-/* 로그인 및 업로드 페이지 특화 스타일 
-.home-page button, .upload-page button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 1em;
-} */
+/* 메인 페이지 App.css 끝 */
 
-
-/* 업로드 페이지 박스안에 들어갈 요소 
-.upload-box{
-  top: '47px';
-  left: '495px';
-  width: '640px';
-  height: '550px';
-  background-color: '#ffffff';
-  border-radius: '24px';
-}*/
+/* 업로드 페이지 App.css 시작 */
 .card {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 45px;
+  padding: 24px;
   top: 47px;
   left: 495px;
   width: 640px;
@@ -225,13 +199,19 @@
   background-color: #ffffff;
   border-radius: 24px;
 }
+
 .innercard {
-  top: 167px;
-  left: 519px;
-  width: 592px;
-  height: 406px;
   background-color: #f5f5f5;
   border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  width: 592px;
+  height: 406px;
 }
 
 .upload-page-buttons {
@@ -241,16 +221,116 @@
   margin-top: 20px;
 }
 
+.upload-icon {
+  margin-top: 20px; /* 상단 여백 추가 */
+  width: 88px; /* 이미지 크기 조정 */
+  height: auto; /* 이미지 높이는 자동으로 조정 */
+}
+
+.upload-title {
+  color: #3617ce;
+  font-size: 24px;
+  font-family: "Work Sans";
+  font-weight: 600;
+  line-height: 30px;
+  margin-top: 20px; /* 이미지와의 간격 조정 */
+}
+
+.upload-description {
+  color: #3617ce;
+  font-size: 16px;
+  font-family: "Work Sans";
+  font-weight: 500;
+  line-height: 20px;
+  margin-top: 10px; /* 제목과의 간격 조정 */
+}
+
+/* 버튼 스타일 */
 .upload-button {
   cursor: pointer;
-  padding: 10px 20px;
-  border: 0.5px solid #3617ce;
+  padding: 12px 24px;
+  border: 1px solid #3617ce;
   border-radius: 10px;
-  background-color: #ffffff;
+  background-color: rgba(114,163,232,0);
   color: #3617ce;
-  font-size: 18px;
+  font-size: 14px;
   font-family: 'Arial, sans-serif';
   font-weight: 500;
+  line-height: 18px;
+  outline: none;
+  margin-top: 20px; /* 설명 텍스트와의 간격 조정 */
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 270px;
+  height: 100%;
+  background-color: #3617ce;
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  align-items: center; /* 세로 중앙 정렬 */
+  justify-content: center; /* 가로 중앙 정렬 */
+}
+
+.profile-image {
+  position: absolute;
+  top: 47px;
+  left: 50%; /* 중앙 정렬 */
+  transform: translateX(-50%); /* X축 기준으로 -50% 이동하여 완벽 중앙 정렬 */
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  background-image: url('../public/profilePhoto.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.menu-item1, .menu-item2, .menu-item3, .menu-item4, .menu-item5, .menu-item6 {
+  display: flex;
+  position: absolute;
+  left: 40; /* 왼쪽에서부터의 거리 */
+  width: 170px; /* 너비 */
+  color: #ffffff; /* 글자 색상 */
+  font-size: 16px; /* 글자 크기 */
+  font-weight: 700; /* 글자 두께 */
+  line-height: 20px; /* 줄 간격 */
+}
+
+.menu-item2 {
+  display: flex;
+  color: #3617ce;
+  left : 40px;
+  font-weight: 700;
+}
+
+.menu-item1 { top: 160px; }
+.menu-item3 { top: 262px; }
+.menu-item4 { top: 314px; }
+.menu-item5 { top: 788px; }
+.menu-item6 { top: 840px; }
+
+.icon {
+  margin-right: 12px; /* 아이콘과 글자 사이의 간격 */
+  color: #ffffff; /* 아이콘 색상 */
+  font-size: 23px;
+}
+
+.whitebackground {
+  position: absolute;
+  top: 200px; /* 메뉴 1 바로 아래에 위치하도록 조정 */
+  left: 10px;
+  width: 250px;
+  height: 44px;
+  background-color: #f5f9fd;
+  border-radius: 9px;
+  z-index: 0; /* 메뉴 2의 글자와 아이콘 위로 배치되지 않도록 */
+  display: flex;
+  align-items: center; /* 세로 중앙 정렬 */
+  justify-content: center; /* 가로 중앙 정렬 */
 }
 
 .upload-button:hover {
@@ -263,6 +343,7 @@
   margin: 10px 0;
 }
 
+/* 업로드 페이지 App.css 끝 */
 /* App.css */
 
 .spinner {
